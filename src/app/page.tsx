@@ -27,30 +27,47 @@ export default function HomePage() {
 
   const [currentCity, setCurrentCity] = useState("Indore");
   const [coords, setCoords] = useState({ lat: 22.7196, lng: 75.8577 });
-  const [userName, setUserName] = useState("Paris");
+  const [userName, setUserName] = useState("");
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [userSpecialty, setUserSpecialty] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Determine greeting by time of day
   const [greeting, setGreeting] = useState("Good morning");
 
   useEffect(() => {
-    // 1. Check user profile if signed in
+    // 1. Check user profile — redirect to onboarding if missing
     const cachedUser = localStorage.getItem("aarogyapath_demo_user");
-    if (cachedUser) {
-      try {
-        const u = JSON.parse(cachedUser);
-        if (u.name) setUserName(u.name.split(" ")[0]);
-        if (u.city) {
-          setCurrentCity(u.city);
-          const found = SUPPORTED_CITIES.find(
-            (c) => c.name.toLowerCase() === u.city.toLowerCase()
-          );
-          if (found) setCoords({ lat: found.lat, lng: found.lng });
-        }
-      } catch {
-        // ignore
-      }
+    if (!cachedUser) {
+      router.replace("/onboarding");
+      return;
     }
+    try {
+      const u = JSON.parse(cachedUser);
+      if (!u.name || !u.onboarded) {
+        router.replace("/onboarding");
+        return;
+      }
+      // Skip honorific prefixes (Dr., Prof., Mr., Mrs., Ms., Smt., Shri.)
+      const HONORIFICS = new Set(["dr.", "prof.", "mr.", "mrs.", "ms.", "smt.", "shri.", "er."]);
+      const parts = u.name.trim().split(/\s+/);
+      const firstName = HONORIFICS.has(parts[0]?.toLowerCase()) ? (parts[1] || parts[0]) : parts[0];
+      setUserName(firstName);
+      setUserRole(u.role || null);
+      setUserSpecialty(u.specialty || null);
+      if (u.city) {
+        setCurrentCity(u.city);
+        const found = SUPPORTED_CITIES.find(
+          (c) => c.name.toLowerCase() === u.city.toLowerCase()
+        );
+        if (found) setCoords({ lat: found.lat, lng: found.lng });
+      }
+    } catch {
+      router.replace("/onboarding");
+      return;
+    }
+    setIsLoading(false);
 
     // 2. Greeting by current hour
     const hour = new Date().getHours();
@@ -61,7 +78,7 @@ export default function HomePage() {
     } else {
       setGreeting(t("greetingEvening"));
     }
-  }, [t]);
+  }, [t, router]);
 
   const handleCityChange = (c: { name: string; lat: number; lng: number }) => {
     setCurrentCity(c.name);
@@ -114,6 +131,18 @@ export default function HomePage() {
 
   const featuredHospitals = (hospitalsData as Hospital[]).slice(0, 3);
 
+  // Don't render until we've checked for user profile (avoids flash before redirect)
+  if (isLoading) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-muted">
+          <HeartPulse className="h-8 w-8 animate-pulse text-primary" />
+          <p className="text-sm font-medium">Loading your health dashboard…</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto w-full max-w-[1200px] px-4 py-4 sm:px-6 sm:py-6">
       {/* Mobile Location Row and Large Pill Search Bar (<1024px) */}
@@ -146,9 +175,23 @@ export default function HomePage() {
       {/* Greeting and Welcome */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl font-bold tracking-tight text-text-heading sm:text-2xl">
-            {greeting}, {userName}
-          </h1>
+          <div className="flex flex-wrap items-center gap-2">
+            <h1 className="text-xl font-bold tracking-tight text-text-heading sm:text-2xl">
+              {greeting}, {isLoading ? "…" : userName} 👋
+            </h1>
+            {!isLoading && userRole && userRole !== "citizen" && (
+              <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-bold ${
+                userRole === "doctor"
+                  ? "bg-pastel-pink text-[#B33951]"
+                  : userRole === "nurse"
+                  ? "bg-pastel-mint text-[#226F54]"
+                  : "bg-pastel-purple text-[#6B46C1]"
+              }`}>
+                {userRole === "doctor" ? "Doctor" : userRole === "nurse" ? "Nurse" : "Med. Student"}
+                {userSpecialty ? ` · ${userSpecialty}` : ""}
+              </span>
+            )}
+          </div>
           <p className="mt-0.5 text-xs sm:text-sm text-muted">
             {tCommon("tagline")}
           </p>

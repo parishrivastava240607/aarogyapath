@@ -1,0 +1,112 @@
+[
+  {
+    "id": "apollo-pharmacy-vijay-nagar",
+    "name": "Apollo Pharmacy Vijay Nagar",
+    "address": "Scheme No 54, PU-4, Commercial Complex, Vijay Nagar, Indore 452010",
+    "lat": 22.7530,
+    "lng": 75.8910,
+    "phone": "+91 731 257 8890",
+    "open_24x7": true,
+    "hours": "Open 24 Hours",
+    "rating": 4.5
+  },
+  {
+    "id": "medplus-pharmacy-bhawarkua",
+    "name": "MedPlus Pharmacy Bhawarkua",
+    "address": "Bhawarkua Main Road, Near Tower Square, Indore 452001",
+    "lat": 22.6980,
+    "lng": 75.8650,
+    "phone": "+91 731 405 6677",
+    "open_24x7": true,
+    "hours": "Open 24 Hours",
+    "rating": 4.3
+  },
+  {
+    "id": "dawa-bazar-shree-medical",
+    "name": "Shree Ram Medical Stores (Dawa Bazar)",
+    "address": "Shop No 14, Dawa Bazar, RNT Marg, Chhoti Gwaltoli, Indore 452001",
+    "lat": 22.7180,
+    "lng": 75.8720,
+    "phone": "+91 731 251 4455",
+    "open_24x7": true,
+    "hours": "Open 24 Hours (All Emergency Injections Available)",
+    "rating": 4.6
+  },
+  {
+    "id": "wellness-forever-palasia",
+    "name": "Wellness Forever Chemist Palasia",
+    "address": "Old Palasia Main Road, Near Saket Square, Indore 452018",
+    "lat": 22.7240,
+    "lng": 75.8890,
+    "phone": "+91 731 422 9988",
+    "open_24x7": true,
+    "hours": "Open 24 Hours",
+    "rating": 4.7
+  },
+  {
+    "id": "onemg-partner-annapurna",
+    "name": "Tata 1mg Health Point & Chemist Annapurna",
+    "address": "Annapurna Road, Near Narendra Tiwari Marg, Indore 452009",
+    "lat": 22.6920,
+    "lng": 75.8390,
+    "phone": "+91 731 248 1122",
+    "open_24x7": false,
+    "hours": "8:00 AM - 11:00 PM",
+    "rating": 4.4
+  },
+  {
+    "id": "patel-medicos-chhoti-gwaltoli",
+    "name": "Patel Medicos 24 Hours",
+    "address": "Near Railway Station, Chhoti Gwaltoli, Indore 452001",
+    "lat": 22.7150,
+    "lng": 75.8680,
+    "phone": "+91 731 252 3344",
+    "open_24x7": true,
+    "hours": "Open 24 Hours",
+    "rating": 4.2
+  },
+  {
+    "id": "sanjivani-medical-geeta-bhawan",
+    "name": "Sanjivani Medical & General Store",
+    "address": "Geeta Bhawan Square, AB Road, Indore 452001",
+    "lat": 22.7210,
+    "lng": 75.8820,
+    "phone": "+91 731 400 1234",
+    "open_24x7": true,
+    "hours": "Open 24 Hours",
+    "rating": 4.5
+  },
+  {
+    "id": "noble-medical-store-sapna-sangeeta",
+    "name": "Noble Medical Stores",
+    "address": "Sapna Sangeeta Road, Snehnagar, Indore 452001",
+    "lat": 22.7050,
+    "lng": 75.8690,
+    "phone": "+91 731 246 5566",
+    "open_24x7": false,
+    "hours": "9:00 AM - 11:30 PM",
+    "rating": 4.3
+  },
+  {
+    "id": "jain-medicos-rajwada",
+    "name": "Jain Medicos & Surgical",
+    "address": "Near Rajwada Palace, MG Road, Indore 452002",
+    "lat": 22.7185,
+    "lng": 75.8560,
+    "phone": "+91 731 253 9900",
+    "open_24x7": false,
+    "hours": "9:30 AM - 10:30 PM",
+    "rating": 4.1
+  },
+  {
+    "id": "apollo-pharmacy-sudama-nagar",
+    "name": "Apollo Pharmacy Sudama Nagar",
+    "address": "Sector E, Sudama Nagar Main Road, Indore 452009",
+    "lat": 22.6955,
+    "lng": 75.8280,
+    "phone": "+91 731 278 4455",
+    "open_24x7": true,
+    "hours": "Open 24 Hours",
+    "rating": 4.4
+  }
+]

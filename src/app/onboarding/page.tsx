@@ -318,7 +318,7 @@ export default function OnboardingPage() {
           {/* ══════════════════════════════════════════════════════
               STEP 1 — Personal details
           ══════════════════════════════════════════════════════ */}
-          {step === 1 && (
+          <div className={`transition-opacity duration-200 ${step===1?'opacity-100':'opacity-0 h-0 overflow-hidden'}`}>
             <div className="space-y-4">
               <InputField
                 label="Full Name"
